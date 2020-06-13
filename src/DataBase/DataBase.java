@@ -1,9 +1,6 @@
 package DataBase;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.invoke.SerializedLambda;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.sql.*;
 
 public class DataBase {
@@ -21,19 +18,9 @@ public class DataBase {
             // 打开链接
             System.out.println("connecting...");
             connection = DriverManager.getConnection(DB_URL,USER,PASS);
-
             if(!connection.isClosed())
                 System.out.println("Succeeded connecting to the Database!");
-        } catch(ClassNotFoundException e) {
-            //数据库驱动类异常处理
-            System.out.println("Sorry,can`t find the Driver!");
-            e.printStackTrace();
-        } catch(SQLException e) {
-            //数据库连接失败异常处理
-            System.out.println("Sorry,can`t Connect!");
-            e.printStackTrace();
-        }catch (Exception e) {
-            // TODO: handle exception
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
@@ -56,6 +43,8 @@ public class DataBase {
 
     public boolean login(String name,String psw) throws UnsupportedEncodingException {
 
+        System.out.println("\n\n=======================HANDLING LOGIN\n\n");
+
         String select = "SELECT * FROM uname_psw WHERE uname = ? AND psw= ? ";
         System.out.println(select);
         boolean bool = false;
@@ -66,6 +55,7 @@ public class DataBase {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 bool = true;
+                System.out.println("\n\nUSER EXISTS\n\n");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -73,11 +63,36 @@ public class DataBase {
         return bool;
     }
 
-    public void UpdateDb(String db,String name,String password){
-        try{
-            this.connection = DriverManager.getConnection(JDBC_DRIVER+db,name,password);
-        }catch (Exception e){
-            System.out.println("Update fail"+e.getMessage());
+    private static Connection getConnection() throws ClassNotFoundException, SQLException {
+        Class.forName(JDBC_DRIVER);
+        return DriverManager.getConnection(DB_URL,USER,PASS);
+    }
+
+    public static ResultSet executeQuery(String SQL){
+        try {
+            Connection conn=getConnection();
+            Statement stmt=conn.createStatement();
+            return stmt.executeQuery(SQL);
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static boolean executeUpdate(String SQL){
+        try {
+            Connection conn=getConnection();
+
+            Statement stmt=conn.createStatement();
+            int result=stmt.executeUpdate(SQL);
+            if(result>0)
+                return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

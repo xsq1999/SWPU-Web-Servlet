@@ -19,8 +19,6 @@ public class EncodingFilter implements Filter { //继承Filter类
             //设置response字符编码
             response.setContentType("text/html;charset="+encoding);
         }
-        //传递给下一个过滤器
-        chain.doFilter(request, response);
     }
     public void init(FilterConfig filterConfig) throws ServletException {
     }
