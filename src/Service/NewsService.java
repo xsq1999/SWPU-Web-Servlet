@@ -40,8 +40,8 @@ public class NewsService {
             News news=new News();
             news.setNewsID(rs.getInt("newsID"));
             news.setNewsTitle(rs.getString("newsTitle"));
-            news.setNewsWriter(rs.getString("newsAuthor"));
-            news.setNewsCon(rs.getString("newsContent"));
+            news.setNewsWriter(rs.getString("newsWriter"));
+            news.setNewsCon(rs.getString("newsCon"));
             news.setNewsDate(rs.getDate("newsDate"));
             lstNews.add(news);
         }
@@ -54,8 +54,8 @@ public class NewsService {
         if(rs.next()){
             news.setNewsID(rs.getInt("newsID"));
             news.setNewsTitle(rs.getString("newsTitle"));
-            news.setNewsWriter(rs.getString("newsAuthor"));
-            news.setNewsCon(rs.getString("newsContent"));
+            news.setNewsWriter(rs.getString("newsWriter"));
+            news.setNewsCon(rs.getString("newsCon"));
             news.setNewsDate(rs.getDate("newsDate"));
         }
         return news;

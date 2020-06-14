@@ -23,24 +23,24 @@
 <div class="table_con">
   <table>
     <tr class="tb_title">
-      <td width="10%">ID</td>
+      <td width="5%">ID</td>
       <td width="30%">news</td>
-      <td width="12%">作者</td>
-      <td width="12%">时间</td>
-      <td width="10%">类型</td>
-      <td width="26%">操作</td>
+      <td width="13%">作者</td>
+      <td width="12%">类型</td>
+      <td width="18%">时间</td>
+      <td width="18%">操作</td>
     </tr>
     <c:forEach var="news" items = "${lstNews}">
       <tr>
         <td width="5%">${news.getNewsID()}</td>
         <td width="30%">${news.getNewsTitle()}</td>
-        <td width="12%">${news.getNewsWriter()}</td>
-        <td width="12%">${news.getNewsDate()}</td>
-        <td width="10%">${news.getNewsCon()}</td>
-        <td width="26%">
-          <a href="EditNewsServlet?newsID=${news.newsID}" class="bj_btn">编辑</a>
-          <a href="ViewNewsServlet?newsID=${news.newsID}" class="sj_btn">查看</a>
-          <a href="DeleteNewsServlet?newsID=${news.newsID}" class="del_btn">删除</a>
+        <td width="13%">${news.getNewsWriter()}</td>
+        <td width="12%">${news.getNewsCon()}</td>
+        <td width="18%">${news.getNewsDate()}</td>
+        <td width="18%">
+          <a href="EditNewsServlet?newsID=${news.newsID}" ><input class="bj_btn" type="button" value="编辑" /></a>
+          <a href="ViewNewsServlet?newsID=${news.newsID}" ><input class="sj_btn" type="button" value="查看" /></a>
+          <a href="DeleteNewsServlet?newsID=${news.newsID}" ><input class="del_btn" type="button" value="删除" /></a>
         </td>
       </tr>
     </c:forEach>

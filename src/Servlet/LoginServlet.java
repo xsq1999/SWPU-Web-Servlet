@@ -16,16 +16,26 @@ import java.net.URLEncoder;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //response.setContentType("text/html; charset=UTF-8");
+        //request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter(); //获得输出流
 
         String name = request.getParameter("name");
         String password = URLEncoder.encode(request.getParameter("password"),"utf-8");//password转码
         DataBase db = new DataBase();
         if (db.login(name, password)) {
-            System.err.println("\n\n======================SUCCESS\n\n");
-            response.getWriter().println("<h1>ssssssssssssssssssssssssssss</h1>");
-//            request.getRequestDispatcher("/show.html").forward(request, response);
+            Object o = request.getSession().getAttribute("onLine");
+            String success = "<br> 用户名： " + name + "<br> 密码：" + password + " <br> 登录成功 " + " <br> 当前在线人数： " + o;
+            Log_Cookie(name, password, response);//Cookie
+            System.out.println(name);
+            System.out.println(password);
+            System.out.println(o);
+            out.println(success);
+            out.println();
+            request.getRequestDispatcher("/show.html").forward(request,response);//跳转至新闻管理页面
         } else {
+            System.out.println(name);
+            System.out.println(password);
             String fail = "<script type='text/javascript'>" +
                     "alert('用户名或密码错误！');" +
                     "location.href='login.html';</script>";
@@ -34,9 +44,6 @@ public class LoginServlet extends HttpServlet {
         db.Clocec();
         out.close();
     }
-    /**
-     * 你他妈 这不会没有登陆成功吧 ???不会吧我该之前实可以的没有啊我才发现我之前那个失败和成功都没有报连接数据库那你看看database
-     * */
 //#region
     protected void Log_Cookie(String name, String password, HttpServletResponse response) throws UnsupportedEncodingException {
         String cname = URLEncoder.encode(name, "UTF-8");//重新编码中文存入cookie
