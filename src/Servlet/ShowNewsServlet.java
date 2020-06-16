@@ -27,7 +27,7 @@ public class ShowNewsServlet extends HttpServlet {
                 System.out.print(n.getNewsCon());
             }
             request.setAttribute("lstNews",lstNews);
-            request.getRequestDispatcher("show.jsp").forward(request,response);
+            request.getRequestDispatcher("newsad.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();
         }

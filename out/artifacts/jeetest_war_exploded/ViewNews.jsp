@@ -6,18 +6,29 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" type="text/css" href="css/table.css" />
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
 <form action="SaveNewsServlet"  method="post">
-    ID<input type="text" name="newsID" value="${news.newsID}"/>
-    news<input type="text" name="newsTitle" value="${news.newsTitle}"/>
-    作者<input type="text" name="newsWriter" value="${news.newsWriter}"/>
-    时间<input type="text" name="newsDate" value="${news.newsDate}"/>
-    类型<input type="text" name="newsCon" value="${news.newsCon}"/>
-    <input type="submit" value="更新"/>
+    <table class="table">
+    <tr>
+        <th>ID</th>
+        <th>news</th>
+        <th>作者</th>
+        <th>时间</th>
+        <th>类型</th>
+    </tr>
+     <tr>
+         <td>${news.newsID}</td>
+         <td>${news.newsTitle}</td>
+         <td>${news.newsWriter}</td>
+         <td>${news.newsDate}</td>
+         <td>${news.newsCon}</td>
+     </tr>
+    </table>
 </form>
 </body>
 </html>
