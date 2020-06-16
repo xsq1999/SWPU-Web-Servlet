@@ -18,7 +18,7 @@
 <body>
 <span class="cp_title">新闻管理</span>
 <div class="add_cp">
-  <a href="logo.html">+添加新闻</a>
+  <a href="AddNews.jsp">+添加新闻</a>
 </div>
 <div class="table_con">
   <table>
@@ -38,9 +38,9 @@
         <td width="12%">${news.getNewsCon()}</td>
         <td width="18%">${news.getNewsDate()}</td>
         <td width="18%">
-          <a href="EditNewsServlet?newsID=${news.newsID}" ><input class="bj_btn" type="button" value="编辑" /></a>
-          <a href="ViewNewsServlet?newsID=${news.newsID}" ><input class="sj_btn" type="button" value="查看" /></a>
-          <a href="DeleteNewsServlet?newsID=${news.newsID}" ><input class="del_btn" type="button" value="删除" /></a>
+          <a href="EditNewsServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-right: 5px"><input class="bj_btn" type="button" value="编辑" /></a>
+          <a href="ViewNewsServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-left: 5px;padding-right: 5px"><input class="sj_btn" type="button" value="查看" /></a>
+          <a href="DeleteNewsServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-left: 5px;padding-right: 5px"><input class="del_btn" type="button" value="删除" /></a>
         </td>
       </tr>
     </c:forEach>

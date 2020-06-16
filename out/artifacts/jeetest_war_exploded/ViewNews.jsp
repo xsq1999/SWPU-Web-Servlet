@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/table.css" />
 <html>
 <head>
-    <title>Title</title>
+    <title>Viewnews</title>
 </head>
 <body>
 <form action="SaveNewsServlet"  method="post">

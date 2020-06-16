@@ -84,7 +84,6 @@ public class DataBase {
     public static boolean executeUpdate(String SQL){
         try {
             Connection conn=getConnection();
-
             Statement stmt=conn.createStatement();
             int result=stmt.executeUpdate(SQL);
             if(result>0)
@@ -92,6 +91,7 @@ public class DataBase {
         }
         catch (Exception e){
             e.printStackTrace();
+            System.out.println("fail");
         }
         return false;
     }

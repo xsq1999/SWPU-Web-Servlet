@@ -15,9 +15,10 @@ public class NewsService {
         return null;
     }
     public boolean AddNews(News news){
-
-        String sql="insert into News (newsTitle,newsCon,newsWriter,newsDate) values ( '"+news.getNewsTitle()+"','"+news.getNewsCon()+"','"+news.getNewsWriter()+"','"+news.getNewsDate()+"')";
+        String date=news.getNewsDate().toString();
+        String sql="insert into news (newsID,newsTitle,newsWriter,newsCon,newsDate) values ( "+news.getNewsID()+",'"+news.getNewsTitle()+"','"+news.getNewsWriter()+"','"+news.getNewsCon()+"','"+new java.sql.Date(news.getNewsDate().getTime())+"')";
         boolean result=DataBase.executeUpdate(sql);
+        System.out.println(sql);
         return result;
     }
     public boolean DeleteNews(int newsID){
