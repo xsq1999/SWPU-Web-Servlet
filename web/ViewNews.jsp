@@ -13,22 +13,9 @@
 </head>
 <body>
 <form action="SaveNewsServlet"  method="post">
-    <table class="table">
-    <tr>
-        <th>ID</th>
-        <th>news</th>
-        <th>作者</th>
-        <th>时间</th>
-        <th>类型</th>
-    </tr>
-     <tr>
-         <td>${news.newsID}</td>
-         <td>${news.newsTitle}</td>
-         <td>${news.newsWriter}</td>
-         <td>${news.newsDate}</td>
-         <td>${news.newsCon}</td>
-     </tr>
-    </table>
+    <div>
+        ${news.newsDetail}
+    </div>
 </form>
 </body>
 </html>

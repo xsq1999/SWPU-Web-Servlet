@@ -32,10 +32,12 @@ public class SaveNewsServlet extends HttpServlet {
         news.setNewsDate(date);
         news.setNewsCon(request.getParameter("newsCon"));
         news.setNewsWriter(request.getParameter("newsWriter"));
+        news.setNewsDetail(request.getParameter("newsDetail"));
+
 
 
         NewsService service=new NewsService();
-        service.updateNews(news);
+        service.nomalupdateNews(news);
 
         request.getRequestDispatcher("ShowNewsServlet").forward(request,response);
 

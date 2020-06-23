@@ -1,6 +1,7 @@
 package Servlet;
 
 import DataBase.DataBase;
+import News.News;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,7 @@ public class LoginServlet extends HttpServlet {
         //response.setContentType("text/html; charset=UTF-8");
         //request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter(); //获得输出流
-
+        News news=new News();
         String name = request.getParameter("name");
         String password = URLEncoder.encode(request.getParameter("password"),"utf-8");//password转码
         DataBase db = new DataBase();
@@ -32,7 +33,12 @@ public class LoginServlet extends HttpServlet {
             System.out.println(o);
             out.println(success);
             out.println();
-            request.getRequestDispatcher("/show.html").forward(request,response);//跳转至新闻管理页面
+            if (db.adlogin(name, password)){
+                request.getRequestDispatcher("/AdShowNewsServlet").forward(request, response);//跳转至管理员管理页面
+            }
+            else {
+                request.getRequestDispatcher("/show.html").forward(request, response);//跳转至普通用户新闻管理页面
+            }
         } else {
             System.out.println(name);
             System.out.println(password);

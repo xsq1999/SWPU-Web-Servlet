@@ -20,6 +20,7 @@
 <div class="add_cp">
   <a href="AddNews.jsp">+添加新闻</a>
 </div>
+<%--<span style="position: relative; margin-left:23px;margin-top: 30px;font-size: 10px;">当前在线人数：${news.getSession()}</span>--%>
 <div class="table_con">
   <table>
     <tr class="tb_title">
@@ -38,9 +39,9 @@
         <td width="12%">${news.getNewsCon()}</td>
         <td width="18%">${news.getNewsDate()}</td>
         <td width="18%">
-          <a href="EditNewsServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-right: 5px"><input class="bj_btn" type="button" value="编辑" /></a>
+          <a href="EditServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-right: 5px"><input class="bj_btn" type="button" value="编辑" /></a>
           <a href="ViewNewsServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-left: 5px;padding-right: 5px"><input class="sj_btn" type="button" value="查看" /></a>
-          <a href="DeleteNewsServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-left: 5px;padding-right: 5px"><input class="del_btn" type="button" value="删除" /></a>
+          <a href="DeleteServlet?newsID=${news.newsID}" style="margin: 0;padding: 0;display: inline-block;padding-left: 5px;padding-right: 5px"><input class="del_btn" type="button" value="删除" /></a>
         </td>
       </tr>
     </c:forEach>

@@ -44,7 +44,6 @@ public class DataBase {
     public boolean login(String name,String psw) throws UnsupportedEncodingException {
 
         System.out.println("\n\n=======================HANDLING LOGIN\n\n");
-
         String select = "SELECT * FROM uname_psw WHERE uname = ? AND psw= ? ";
         System.out.println(select);
         boolean bool = false;
@@ -61,6 +60,26 @@ public class DataBase {
             throwables.printStackTrace();
         }
         return bool;
+    }
+
+    public boolean adlogin(String name,String psw) throws UnsupportedEncodingException {
+
+        String adselect = "SELECT * FROM uname_psw WHERE uname = ? AND psw= ? AND admin = 1";
+        System.out.println(adselect);
+        boolean admin = false;
+        try {
+            preparedStatement = connection.prepareStatement(adselect);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,psw);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                admin = true;
+                System.out.println("\n\nUSER EXISTS\n\n");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return admin;
     }
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
